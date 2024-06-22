@@ -1,0 +1,20 @@
+{
+  "name": "asuka-api",
+  "module": "app.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "mysql2": "^3.10.0",
+    "sequelize": "^6.37.3",
+    "winston": "^3.13.0"
+  },
+  "scripts": {
+    "start": "bun run app.ts"
+  }
+}

@@ -1,5 +1,5 @@
 export interface PutSubmissionDto {
-  id: number;
+  id: string;
   name: string;
   image: string;
   suggestedBy: string;

@@ -19,5 +19,9 @@
     "express": "^4.19.2",
     "express-winston": "^4.2.0",
     "winston": "^3.13.1"
+  },
+  "scripts": {
+    "start": "bun run app.ts",
+    "debug": "export DEBUG=* && bun run start"
   }
 }

@@ -61,7 +61,7 @@ class SubmissionsDao {
     return `${submissionId} removed`
   }
 
-  async getSubmissionByUserId(suggestedBy: string) {
+  async getSubmissionsByUserId(suggestedBy: string) {
     return this.submissions.filter((submission: { suggestedBy: string }) => submission.suggestedBy === suggestedBy)
   }
 }

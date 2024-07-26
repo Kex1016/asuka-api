@@ -30,7 +30,7 @@ class SubmissionsService implements CRUD {
   }
 
   getByUserId(userId: string): Promise<any> {
-    return SubmissionsDao.getSubmissionByUserId(userId)
+    return SubmissionsDao.getSubmissionsByUserId(userId)
   }
 }
 

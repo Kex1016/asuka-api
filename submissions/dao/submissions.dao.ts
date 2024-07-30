@@ -72,6 +72,20 @@ class SubmissionsDao {
         }).exec()
     }
 
+    async getSubmissionsThisWeekByUserId(suggestedBy: string) {
+        const now = new Date()
+        const startOfWeek = new Date(now.getFullYear(), now.getMonth(), now.getDate() - now.getDay())
+        const endOfWeek = new Date(now.getFullYear(), now.getMonth(), now.getDate() + (6 - now.getDay()))
+
+        return this.Submission.find({
+            suggestedBy: suggestedBy,
+            addedAt: {
+                $gte: startOfWeek,
+                $lt: endOfWeek
+            }
+        }).exec()
+    }
+
     async updateSubmissionById(submissionId: string, submissionFields: PatchSubmissionDto | PutSubmissionDto) {
         return await this.Submission.findOneAndUpdate(
             {_id: submissionId},

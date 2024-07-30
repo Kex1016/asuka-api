@@ -32,6 +32,10 @@ class KeysService implements CRUD {
     async getByUserId(userId: string): Promise<any> {
         return KeysDao.getKeysByUserId(userId)
     }
+
+    async getByKey(key: string): Promise<any> {
+        return KeysDao.getKeyByKey(key)
+    }
 }
 
 export default new KeysService()

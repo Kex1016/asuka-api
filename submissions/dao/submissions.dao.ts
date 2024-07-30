@@ -1,4 +1,4 @@
-import mongooseService from "../../common/services/mongoose.service.ts";
+import MongooseService from "../../common/services/mongoose.service.ts";
 
 import {type CreateSubmissionDto} from '../dto/create.submission.dto.ts'
 import {type PatchSubmissionDto} from '../dto/patch.submission.dto.ts'
@@ -10,7 +10,7 @@ import debug from 'debug'
 const log: debug.IDebugger = debug('app:submissions-dao')
 
 class SubmissionsDao {
-    Schema = mongooseService.getMongoose().Schema;
+    Schema = MongooseService.getMongoose().Schema;
     submissionSchema = new this.Schema({
         _id: String,
         name: String,
@@ -23,7 +23,7 @@ class SubmissionsDao {
         createdAt: Date
     }, {id: false});
 
-    Submission = mongooseService.getMongoose().model('Submissions', this.submissionSchema);
+    Submission = MongooseService.getMongoose().model('Submissions', this.submissionSchema);
 
     constructor() {
         log('Created new instance of SubmissionsDao')

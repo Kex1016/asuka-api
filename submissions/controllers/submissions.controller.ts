@@ -1,22 +1,22 @@
 import express from "express";
-import submissionsService from "../services/submissions.service.ts";
+import SubmissionsService from "../services/submissions.service.ts";
 import debug from 'debug';
 
 const log: debug.IDebugger = debug('app:submissions-controller');
 
 class SubmissionsController {
     async listSubmissions(req: express.Request, res: express.Response) {
-        const submissions = await submissionsService.list(100, 0);
+        const submissions = await SubmissionsService.list(100, 0);
         res.status(200).send(submissions);
     }
 
     async getSubmissionById(req: express.Request, res: express.Response) {
-        const submission = await submissionsService.readById(req.params.submissionId);
+        const submission = await SubmissionsService.readById(req.params.submissionId);
         res.status(200).send(submission);
     }
 
     async createSubmission(req: express.Request, res: express.Response) {
-        const submissionId = await submissionsService.create(req.body);
+        const submissionId = await SubmissionsService.create(req.body);
         res.status(201).send({ id: submissionId });
     }
 
@@ -31,7 +31,7 @@ class SubmissionsController {
     }
 
     async removeSubmission(req: express.Request, res: express.Response) {
-        const response = await submissionsService.deleteById(req.params.submissionId);
+        const response = await SubmissionsService.deleteById(req.params.submissionId);
         res.status(204).send(response);
     }
 }

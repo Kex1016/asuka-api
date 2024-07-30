@@ -5,31 +5,34 @@ import type { PutSubmissionDto } from '../dto/put.submission.dto.ts'
 import type { PatchSubmissionDto } from '../dto/patch.submission.dto.ts'
 
 class SubmissionsService implements CRUD {
-  create(resource: CreateSubmissionDto): Promise<any> {
+  async create(resource: CreateSubmissionDto): Promise<any> {
     return SubmissionsDao.addSubmission(resource)
   }
 
-  deleteById(id: string): Promise<string> {
+  async deleteById(id: string): Promise<any> {
     return SubmissionsDao.removeSubmissionById(id)
   }
 
   list(limit: number, page: number): Promise<any> {
     return SubmissionsDao.getSubmissions()
+  async list(limit: number, page: number): Promise<any> {
   }
 
   patchById(id: string, resource: PatchSubmissionDto): Promise<string> {
     return SubmissionsDao.patchSubmissionById(id, resource)
+  async patchById(id: string, resource: PatchSubmissionDto): Promise<any> {
   }
 
   putById(id: string, resource: PutSubmissionDto): Promise<string> {
     return SubmissionsDao.putSubmissionById(id, resource)
+  async putById(id: string, resource: PutSubmissionDto): Promise<any> {
   }
 
-  readById(id: string): Promise<any> {
+  async readById(id: string): Promise<any> {
     return SubmissionsDao.getSubmissionById(id)
   }
 
-  getByUserId(userId: string): Promise<any> {
+  async getByUserId(userId: string): Promise<any> {
     return SubmissionsDao.getSubmissionsByUserId(userId)
   }
 }

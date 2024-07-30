@@ -24,7 +24,7 @@ class SubmissionsMiddleware {
         res: express.Response,
         next: express.NextFunction
     ) {
-        const submissions = await submissionsService.getByUserId(req.body.submittedBy);
+        const submissions = await submissionsService.getThisWeekByUserId(req.body.submittedBy);
         if (submissions.length > 2) {
             res.status(400).send({error: `Cannot submit more than two submissions per user`});
         } else {

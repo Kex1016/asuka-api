@@ -25,8 +25,6 @@ class SubmissionsDao {
 
     Submission = mongooseService.getMongoose().model('Submissions', this.submissionSchema);
 
-    submissions: Array<CreateSubmissionDto> = []
-
     constructor() {
         log('Created new instance of SubmissionsDao')
     }

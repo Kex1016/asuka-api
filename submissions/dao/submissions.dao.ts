@@ -20,6 +20,7 @@ class SubmissionsDao {
         accepted: Boolean,
         used: Boolean,
         won: Boolean,
+        addedAt: Date
     }, {id: false});
 
     Submission = mongooseService.getMongoose().model('Submissions', this.submissionSchema);

@@ -7,4 +7,5 @@ export type SubmissionType = {
     accepted: boolean
     used: boolean
     won: boolean
+    addedAt: Date
 }

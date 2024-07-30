@@ -6,4 +6,5 @@ export interface CreateSubmissionDto {
   accepted?: boolean;  // Whether the submission was accepted
   used?: boolean;      // Whether the submission was used
   won: boolean;        // Whether the submission won the voting that week (default false)
+  addedAt: Date;       // Date the submission was added
 }

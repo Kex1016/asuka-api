@@ -32,6 +32,14 @@ class SubmissionsService implements CRUD {
   async getByUserId(userId: string): Promise<any> {
     return SubmissionsDao.getSubmissionsByUserId(userId)
   }
+
+  async getThisWeek(): Promise<any> {
+    return SubmissionsDao.getSubmissionsThisWeek()
+  }
+
+  async getThisWeekByUserId(userId: string): Promise<any> {
+    return SubmissionsDao.getSubmissionsThisWeekByUserId(userId)
+  }
 }
 
 export default new SubmissionsService()

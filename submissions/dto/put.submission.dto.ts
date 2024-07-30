@@ -6,5 +6,5 @@ export interface PutSubmissionDto {
   accepted: boolean;
   used: boolean;
   won: boolean;
-  addedAt: Date;
+  createdAt: Date;
 }

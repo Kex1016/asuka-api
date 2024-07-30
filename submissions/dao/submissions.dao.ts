@@ -20,7 +20,7 @@ class SubmissionsDao {
         accepted: Boolean,
         used: Boolean,
         won: Boolean,
-        addedAt: Date
+        createdAt: Date
     }, {id: false});
 
     Submission = mongooseService.getMongoose().model('Submissions', this.submissionSchema);
@@ -77,7 +77,7 @@ class SubmissionsDao {
 
         return this.Submission.find({
             suggestedBy: suggestedBy,
-            addedAt: {
+            createdAt: {
                 $gte: startOfWeek,
                 $lt: endOfWeek
             }

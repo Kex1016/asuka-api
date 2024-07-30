@@ -13,19 +13,16 @@ class SubmissionsService implements CRUD {
     return SubmissionsDao.removeSubmissionById(id)
   }
 
-  list(limit: number, page: number): Promise<any> {
-    return SubmissionsDao.getSubmissions()
   async list(limit: number, page: number): Promise<any> {
+    return SubmissionsDao.getSubmissions(limit, page)
   }
 
-  patchById(id: string, resource: PatchSubmissionDto): Promise<string> {
-    return SubmissionsDao.patchSubmissionById(id, resource)
   async patchById(id: string, resource: PatchSubmissionDto): Promise<any> {
+    return SubmissionsDao.updateSubmissionById(id, resource)
   }
 
-  putById(id: string, resource: PutSubmissionDto): Promise<string> {
-    return SubmissionsDao.putSubmissionById(id, resource)
   async putById(id: string, resource: PutSubmissionDto): Promise<any> {
+    return SubmissionsDao.updateSubmissionById(id, resource)
   }
 
   async readById(id: string): Promise<any> {

@@ -1,3 +1,9 @@
+import dotenv from 'dotenv'
+const deData = dotenv.config()
+if (deData.error) {
+  throw deData.error
+}
+
 import express from 'express'
 import * as http from 'http'
 
@@ -11,7 +17,7 @@ import debug from 'debug'
 
 const app: express.Application = express()
 const server: http.Server = http.createServer(app)
-const port = 3000
+const port = process.env.PORT || 3000
 const routes: Array<CommonRoutesConfig> = []
 const debugLog: debug.IDebugger = debug('app')
 

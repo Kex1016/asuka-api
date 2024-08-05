@@ -11,7 +11,7 @@ class SubmissionsController {
     }
 
     async getSubmissionById(req: express.Request, res: express.Response) {
-        const submission = await SubmissionsService.readById(req.params.submissionId);
+        const submission = await SubmissionsService.readById(req.body.id);
         res.status(200).send(submission);
     }
 
@@ -21,18 +21,18 @@ class SubmissionsController {
     }
 
     async put(req: express.Request, res: express.Response) {
-        log(req.body);
-        res.status(200).send(`PUT requested for id ${req.params.submissionId}`);
+        log(await SubmissionsService.putById(req.body.id, req.body));
+        res.status(204).send();
     }
 
     async patch(req: express.Request, res: express.Response) {
-        log(req.body);
+        log(await SubmissionsService.patchById(req.body.id, req.body));
         res.status(204).send();
     }
 
     async removeSubmission(req: express.Request, res: express.Response) {
-        const response = await SubmissionsService.deleteById(req.params.submissionId);
-        res.status(204).send(response);
+        log(await SubmissionsService.deleteById(req.body.id));
+        res.status(204).send();
     }
 }
 

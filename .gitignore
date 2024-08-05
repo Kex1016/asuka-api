@@ -173,3 +173,6 @@ dist
 
 # Finder (MacOS) folder config
 .DS_Store
+
+# Honestly just get rid of every .sh file. They're not needed.
+*.sh

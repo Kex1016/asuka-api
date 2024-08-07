@@ -19,9 +19,14 @@ class SubmissionsDao {
         messageId: String,
         accepted: Boolean,
         used: Boolean,
-        won: Boolean,
-        createdAt: Date
-    }, {id: false});
+        won: Boolean
+    }, {
+        id: false,
+        timestamps: {
+            createdAt: 'created_at',
+            updatedAt: 'updated_at'
+        }
+    });
 
     Submission = MongooseService.getMongoose().model('Submissions', this.submissionSchema);
 

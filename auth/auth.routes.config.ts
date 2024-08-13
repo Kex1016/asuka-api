@@ -4,6 +4,7 @@ import AuthMiddleware from "./middleware/auth.middleware.ts";
 import express from "express";
 import BodyValidationMiddleware from "../common/middleware/body.validation.middleware.ts";
 import {body} from "express-validator";
+import JwtMiddleware from "./middleware/jwt.middleware.ts";
 
 export class AuthRoutesConfig extends CommonRoutesConfig {
     constructor(app: express.Application) {
@@ -13,14 +14,19 @@ export class AuthRoutesConfig extends CommonRoutesConfig {
     configureRoutes(): express.Application {
         this.app.route(`/auth`)
             .post(
-                body('key').isString().isLength({
-                    min: 48,
-                    max: 48
-                }).withMessage('Must be a valid key'),
+                body('username').isString(),
+                body('password').isString(),
                 BodyValidationMiddleware.verifyBodyFieldsErrors,
-                AuthMiddleware.verifyKey,
+                AuthMiddleware.verifyUserPassword,
                 AuthController.createJWT
             );
+
+        this.app.post(`/auth/refresh-token`, [
+            JwtMiddleware.validJWTNeeded,
+            JwtMiddleware.verifyRefreshBodyField,
+            JwtMiddleware.validRefreshNeeded,
+            AuthController.createJWT,
+        ]);
 
         return this.app;
     }

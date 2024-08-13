@@ -14,7 +14,7 @@ import { CommonRoutesConfig } from './common/common.routes.config.ts'
 import { AuthRoutesConfig } from "./auth/auth.routes.config.ts";
 import { SubmissionsRoutesConfig } from './submissions/submissions.routes.config.ts'
 import { EventsRoutesConfig } from './events/events.routes.config.ts'
-import { KeysRoutesConfig } from "./keys/keys.routes.config.ts";
+import { UsersRoutesConfig } from "./users/users.routes.config.ts";
 import debug from 'debug'
 
 const app: express.Application = express()
@@ -43,7 +43,7 @@ if (!process.env.DEBUG) {
 app.use(expressWinston.logger(loggerOptions))
 
 routes.push(new AuthRoutesConfig(app))
-routes.push(new KeysRoutesConfig(app))
+routes.push(new UsersRoutesConfig(app))
 routes.push(new SubmissionsRoutesConfig(app))
 routes.push(new EventsRoutesConfig(app))
 

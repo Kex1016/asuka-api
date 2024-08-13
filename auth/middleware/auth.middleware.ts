@@ -1,35 +1,30 @@
 import express from "express";
-import KeysService from "../../keys/services/keys.service.ts";
+import UsersService from "../../users/services/users.service.ts";
+import argon2 from "argon2";
 
 class AuthMiddleware {
-    async verifyKey(
+    async verifyUserPassword(
         req: express.Request,
         res: express.Response,
         next: express.NextFunction
     ) {
-        const keyHeader = req.headers['x-api-key'];
-        if (!keyHeader) {
-            res.status(401).send({
-                error: `API Key is required`,
-            });
-            return;
+        const user: any = await UsersService.readByUsernameWithPassword(
+            req.body.username
+        );
+        if (user) {
+            const passwordHash = user.password;
+            if (await argon2.verify(passwordHash, req.body.password)) {
+                req.body = {
+                    userId: user._id,
+                    username: user.username,
+                    permissionFlags: user.permissionFlags,
+                };
+                return next();
+            }
         }
-
-        if (typeof keyHeader !== 'string') {
-            res.status(401).send({
-                error: `Invalid API Key`,
-            });
-            return;
-        }
-
-        const key = await KeysService.getByKey(keyHeader);
-        if (key.length > 0) {
-            next();
-        } else {
-            res.status(401).send({
-                error: `Invalid API Key`,
-            });
-        }
+        // Giving the same message in both cases
+        // helps protect against cracking attempts:
+        res.status(400).send({ errors: ['Invalid username and/or password'] });
     }
 }
 
